@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<title>Chat</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="jquery.mCustomScrollbar.min.css">
+	
+</head>
+<body>
+	<div class="chat_wrapper">
+		<div class="chat_container">
+			<div class="resizer"></div>
+			<div class="chat_header">
+				<span>Чат</span>
+				<button class="roll">Скрыть</button>
+			</div>
+			<div class="chat_main">
+				<p>Обязательные поля <span>*</span></p>
+				<form class="form" id="enter_chat">
+					<label id="name">
+						<p>Ваше имя <span>*</span></p>
+						<input name="name" type="text">
+					</label>
+					<label id="tel">
+						<p>Ваш номер телефона <span>*</span></p>
+						<input name="phone" type="tel">
+					</label>
+					<label id="email">
+						<p>E-mail адрес</p>
+						<input name="email" type="email">
+					</label>
+					<label id="submit">
+						<p>Ваш вопрос</p>
+						<div class="text">
+							<div class="comment_text_hidden">
+								<div class="textarea_behavior" id="comment_text_hidden"></div>
+							</div>
+							<textarea name="message" class="textarea_behavior" rows="3" id="textarea"></textarea>
+						</div>
+						<!-- <textarea id="textarea" name="message"></textarea> -->
+					</label>
+					<button type="submit">Начать чат</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="jquery.mCustomScrollbar.min.js"></script>
+	<script src="jquery.validate.min.js"></script>
+	<script src="autosize.js"></script>
+	<script src="main.js"></script>
+
+</body>
+</html>
