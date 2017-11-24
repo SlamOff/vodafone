@@ -9,13 +9,66 @@ $(document).ready(function() {
 			$(chat).css('display', 'none');
 			//$('.chat_container').css('min-height', '1px');
 			$(resizer).hide();
+			$('.chat_user_message').hide();
+			$('.chat_user_footer').hide();
 		}
 		else{
 			$(chat).css('display', 'block');
 			$(resizer).show();
+			$('.chat_user_message').show();
+			$('.chat_user_footer').show();
 		}
 	});
-
+	$('.chat_end').click(function(){
+		var thanks = $('.thanks');
+		thanks.toggle();
+		var messageInput = $('.chat_user_message input');
+		messageInput.attr('placeholder', 'Чат завершен');
+		messageInput.attr('disabled', 'disabled');
+		this.textContent = 'Возобновить чат';
+		$('.chat_user_message .send').css('border-left-color', '#cdcdcd');
+		if($('.thanks').is(':hidden')){
+			messageInput.removeAttr('disabled');
+			$('.chat_user_message .send').css('border-left-color', '#e50000');
+			messageInput.attr('placeholder', 'Введите Ваше сообщение');
+			this.textContent = 'Завершить чат';
+			messageInput.focus();
+		}
+	});
+	var rating = $('.rating');
+	var rating2 = $('.next_rating');
+	var rating3 = $('.final_rating');
+	var rateWrapper = $('.dialog');
+	$('#rate').click(function(){
+		$('.chat_user_message').hide();
+		$('.chat_user_footer').hide();
+		rateWrapper.css({
+			'backgroundColor' : '#fff',
+			'paddingBottom' : '20px',
+			'minHeight' : '1px',
+			'border' : 'none'
+		});
+		rateWrapper.empty();
+		rateWrapper.append(resizer);
+		rateWrapper.append(rating);
+		rating.show();
+		rating2.hide();
+		rating3.hide();
+	});
+	$('#next_rate').click(function(){
+		rateWrapper.empty();
+		rateWrapper.append(resizer);
+		rateWrapper.append(rating2);
+		rating2.show();
+		rating3.hide();
+	});
+	$('.final_rate').click(function(e){
+		console.log(e);
+		rateWrapper.empty();
+		rateWrapper.append(resizer);
+		rateWrapper.append(rating3);
+		rating3.show();
+	});
 	// resize
 	var chat = document.querySelector('.chat_main');
 	var chatContainer = document.querySelector('.chat_container');
@@ -33,6 +86,7 @@ $(document).ready(function() {
 		startHeight = parseInt(document.defaultView.getComputedStyle(chatContainer).height, 10);
 		document.documentElement.addEventListener('mousemove', doDrag, false);
 		document.documentElement.addEventListener('mouseup', stopDrag, false);
+		// $('.dialog').css('min-height', '1px');
 	}
 
 	function doDrag(e) {
@@ -63,7 +117,29 @@ $(document).ready(function() {
 		var validationEmail = "Введите корректный E-mail";
 	}
 
-	
+	var stars = document.querySelectorAll('.star');
+	var stars2 = Array.prototype.slice.call(stars);
+
+	stars2.map(function(el, ind){
+		el.onmouseover = function(e){
+			for(var m = 0; m < ind; m++){
+				stars[m].style.backgroundColor = '#e60000';
+			}
+			this.style.backgroundColor = '#e60000';
+		}
+		el.onmouseout = function(e){
+			el.style.backgroundColor = '#000';
+			for(var m = 0; m < ind; m++){
+				stars[m].style.backgroundColor = '#000';
+			}
+		}
+		el.onclick = function(e){
+			el.style.backgroundColor = '#e60000';
+			for(var m = 0; m < ind; m++){
+				stars[m].style.backgroundColor = '#e60000';
+			}
+		}
+	});
 	$('.form').validate({
 		errorPlacement: function(error, element) {
 			if (element.attr("name") == "name" ){
@@ -96,65 +172,5 @@ $(document).ready(function() {
 			}
 		}
 	});
-	// $('textarea').keypress(function(){
-	// 	var height = getComputedStyle(this).height;
-		
-	// 	// text = this.value.length;
-	// 	// if (text > 35){
-	// 	// 	height = 60;
-	// 	// }
-	// 	text = $(this).val();
-	// 	if (text > 35){
-	// 		height = 60;
-	// 	}
-
-
-
-	// 	console.log(text);
-	// });
-	// function resizeArea(text_id, minHeight, maxHeight){
-	// 	var area = $(text_id);
-	// 	var area_hidden = $(text_id + "_hidden");
-	// 	var text = '';
-	// 	area.value.replace(/[<>]/g, '_').split("\n").each( function(s) {
-	// 		text = text + '<div>' + s.replace(/\s\s/g, ' &nbsp;') + '&nbsp;</div>'+"\n";
-	// 	});
-	// 	area_hidden.innerHTML = text;
-	// 	var height = area_hidden.offsetHeight + 15;
-	// 	height = Math.max(minHeight, height);
-	// 	height = Math.min(maxHeight, height);
-	// 	area.style.height = height + 'px';
-	// }
-	// //resizeArea();
-	// $('#comment_text').keyup(function(){
-	// 	resizeArea('comment_text', 45, 455);
-	// });
-
-	// var linecount = 1;
-	// var area = $('.form textarea');
-	// area.value.split("\n").each( function(s) {
-	// 	linecount += Math.floor( s.length / cols ) + 1;
-	// });
-	// area.rows = linecount;
-	// console.log(linecount);
-	// var area = $('.form textarea');
-	
-	// $('textarea').keyup(function(){
-	// 	console.log(area.val());
-	// });
-	// var textarea = document.querySelector('#textarea');
-
-	// textarea.addEventListener('keydown', autosize);
-             
-	// function autosize(){
-	// 	var el = this;
-	// 	setTimeout(function(){
-	// 	el.style.cssText = 'height:auto; padding:0';
-	// 	// for box-sizing other than "content-box" use:
-	// 	// el.style.cssText = '-moz-box-sizing:content-box';
-	// 	el.style.cssText = 'height:' + el.scrollHeight + 'px';
-	// 	},0);
-	// }
-	autosize($('#textarea'));
-
+	autosize($('.textarea2'));
 });

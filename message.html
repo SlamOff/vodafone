@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<title>Chat</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="jquery.mCustomScrollbar.min.css">
+	
+</head>
+<body>
+	<div class="chat_wrapper">
+		<div class="chat_container">
+			<div class="resizer"></div>
+			<nav class="chat_header">
+				<span>Чат</span>
+				<div class="nav_btns">
+					<button class="mute"></button>
+					<button class="roll"></button>
+					<button class="close"><span class="span1"></span><span class="span2"></span></button>
+				</div>
+				
+			</nav>
+			<div class="chat_main dialog">
+				<div class="message_wrapper">
+					<div class="message">
+						123
+						<span class="time">17:57</span>
+					</div>
+				</div>
+				<div class="message_wrapper">
+					<div class="message">
+						122222222222222423 122222222222222423 122222222222222423 122222222222222423
+						<span class="time">17:57</span>
+					</div>
+				</div>
+				<div class="message_wrapper">
+					<div class="message">
+						123
+						<span class="time">17:57</span>
+					</div>
+				</div>
+				<div class="message_wrapper">
+					<div class="message">
+						122222222222222423 122222222222222423 122222222222222423 122222222222222423
+						<span class="time">17:57</span>
+					</div>
+				</div>
+				<div class="thanks">
+					<p>Спасибо за Ваше обращение, просим оценить качество обслуживания эксперта. Это займет не более 5 минут Вашего времени</p>
+					<button id="rate" class="btn_red">Далее</button>
+					<button class="btn_red btn_grey">Отправить на E-mail</button>
+				</div>
+			</div>
+			<div class="chat_user_message">
+				<span class="typing">... оператор печатает</span>
+				<div class="disconnect">Связь прервана! Обновите соединение.</div>
+				<input placeholder="Введите Ваше сообщение" type="text">
+				<div class="send"><div class="send_inner"></div></div>
+			</div>
+			<div class="chat_user_footer">
+				<div class="footer_icons"></div>
+				<div class="chat_end">Завершить чат</div>
+			</div>
+		</div>
+	</div>
+	<div class="rating">
+		<h3>Оценка качества обслуживания</h3>
+		<h4>1/4</h4>
+		<p>Основываясь на Вашем обращении к нашим специалистам, насколько вероятно, что Вы порекомендуете компанию Vodafone друзьям и знакомым?</p>
+		<div class="stars">
+			<div class="star"><span>0</span></div>
+			<div class="star"><span>1</span></div>
+			<div class="star"><span>2</span></div>
+			<div class="star"><span>3</span></div>
+			<div class="star"><span>4</span></div>
+			<div class="star"><span>5</span></div>
+			<div class="star"><span>6</span></div>
+			<div class="star"><span>7</span></div>
+			<div class="star"><span>8</span></div>
+			<div class="star"><span>9</span></div>
+			<div class="star"><span>10</span></div>
+		</div>
+		<textarea placeholder="Добавить комментарий" name="message" class="textarea textarea2" id="textarea"></textarea>
+		<button id="next_rate" class="btn_red">Далее</button>
+	</div>
+	<div class="next_rating rating">
+		<h3>Оценка качества обслуживания</h3>
+		<h4>4/4</h4>
+		<p>Ваш вопрос решен?</p>
+		<div class="rate_buttons">
+			<button class="final_rate btn_red">Да</button>
+			<button class="final_rate btn_red btn_grey">Нет</button>
+		</div>
+	</div>
+	<div class="final_rating rating">
+		<h3>Оценка качества обслуживания</h3>
+		<h4>4/4</h4>
+		<p>Благодарим Вас за оценку нашей работы. Всего Вам доброго</p>
+		<textarea placeholder="Добавить комментарий" name="message" class="textarea textarea2" id="textarea"></textarea>
+		<button class="btn_red">Отправить</button>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="jquery.mCustomScrollbar.min.js"></script>
+	<script src="jquery.validate.min.js"></script>
+	<script src="autosize.js"></script>
+	<script src="main.js"></script>
+
+</body>
+</html>
