@@ -3,8 +3,8 @@
 		// сворачивание чата
 		$('.roll').click(function(){
 			$('.chat_container').removeClass('resizable');
-			chatContainer.style.width = "auto";
-			chatContainer.style.height = "auto";
+			//chatContainer.style.width = "auto";
+			chatContainer.style.height = 'auto';
 			wrap.toggleClass('closed_chat');
 			if(wrap.hasClass('closed_chat')){
 				$(chat).css('display', 'none');
@@ -17,6 +17,8 @@
 				$(chat).show();
 				$('.chat_container *').show();
 				$('.no_message').css('align-items', 'center');
+				checkHeight();
+				getHeight();
 				// $(resizer).show();
 				// $('.chat_user_message').show();
 				// $('.chat_user_footer').show();
@@ -29,10 +31,6 @@
 		$('.chat_end').click(function(){
 			checkHeight();
 			$('.message_container').css('height', containerHeight);
-			$(this).scroll(function(){
-				console.log($('.thanks').position());
-			});
-			
 			var thanks = $('.thanks');
 			thanks.toggle();
 			var messageInput = $('.chat_user_message input');
@@ -58,6 +56,8 @@
 		var rateWrapper = $('.dialog');
 		$('#rate').click(function(){
 			rateWrapper.addClass('no_message');
+			checkHeight();
+			getHeight();
 			$('.message_container').css('height', 'auto');
 			wrap.css('align-items', 'center');
 			$('.chat_user_message').remove();
@@ -71,7 +71,6 @@
 			$('.chat_main').mCustomScrollbar('destroy');
 			rateWrapper.empty();
 			rateWrapper.css('height', 'auto');
-			//rateWrapper.removeClass('.mCustomScrollbar');
 			
 			chatContainer.append(resizer);
 			//chatContainer.style.height = 'auto';
@@ -104,21 +103,34 @@
 		var resizer = document.querySelector('.resizer');
 		resizer.addEventListener('mousedown', initDrag, false);
 		var startX, startY, startWidth, startHeight;
+		var containerHeight;
 
-		var containerHeight = parseInt(getComputedStyle(chatContainer).height);
+		function getHeight(){
+			containerHeight = parseInt(getComputedStyle(chatContainer).height);
+			return containerHeight;
+		}
+		var variableHeight = getHeight();
+		//$('.resizer').click(getHeight);
 		// отцентровка контейнера, если его высота не больше высоты окна
 		function checkHeight(){
 			if(window.innerHeight <= containerHeight){
 				wrap.css('align-items', 'stretch');
-				//chatContainer.style.height = '100%';
+				console.log(1);
 			}
 			else {
 				wrap.css('align-items', 'center');
-				//chatContainer.style.height = 'auto';
+				console.log(window.innerHeight);
+				console.log(containerHeight);
+				console.log(variableHeight);
+				
 			}
 		}
 		checkHeight();
-
+		$('.submit').click(function(){
+			checkHeight();
+			getHeight();
+			//$('.chat_wrapper').css('align-items', 'stretch');
+		});
 		// ресайзер чата
 		function initDrag(e) {
 			startX = e.clientX;
@@ -128,21 +140,24 @@
 			startHeight = parseInt(document.defaultView.getComputedStyle(chatContainer).height, 10);
 			document.documentElement.addEventListener('mousemove', doDrag, false);
 			document.documentElement.addEventListener('mouseup', stopDrag, false);
-			//checkHeight();
+			checkHeight();
+			getHeight();
 		}
 
 		function doDrag(e) {
 			chatContainer.style.width = (startWidth + e.clientX - startX) + 'px';
 			chatContainer.style.height = (startHeight + e.clientY - startY) + 'px';
-			//checkHeight();
+			checkHeight();
+			getHeight();
 		}
 
 		function stopDrag(e) {
 			document.documentElement.removeEventListener('mousemove', doDrag, false);
 			document.documentElement.removeEventListener('mouseup', stopDrag, false);
-			//checkHeight();
+			checkHeight();
+			getHeight();
 		}
-
+		
 		
 		
 		// оценка оператора

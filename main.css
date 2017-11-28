@@ -93,7 +93,7 @@ input[disabled]{
 	position: relative;
 	user-select: none;
 	outline: none;
-	overflow: auto;
+	overflow: hidden;
 	max-height: 100%;
 }
 .chat_container.message_container {
@@ -225,11 +225,16 @@ input[disabled]{
 	background-color: #fff;
 	border-radius: 30px;
 	padding: 15px 20px 20px;
-	max-width: 340px;
+	max-width: 320px;
 	overflow: hidden;
 	margin-bottom: 20px;
 	display: inline-block;
 	width: 100%;
+}
+@media (max-width: 480px) {
+	.chat_main.dialog .message {
+		max-width: 90%;
+	}
 }
 .chat_main.dialog .message .time {
 	position: absolute;
@@ -441,7 +446,7 @@ input[disabled]{
 	width: 10px!important;
 }
 .chat_main .form label #textarea_main {
-	height: 360px;
+	height: 160px;
 }
 .thanks {
 	max-width: 300px;
